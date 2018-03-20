@@ -1,0 +1,23 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.contentProduct{
+  display: inline-block;
+  margin-top: 20px;
+}
+
+.contentProducts{
+  margin-top: 20px;
+}
+
+.ant-menu{
+  padding: 0 10px !important;
+}
+
+.ant-layout-header{
+  padding: 0 !important;
+  height: auto !important;
+}
