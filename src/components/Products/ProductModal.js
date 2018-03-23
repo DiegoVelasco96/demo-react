@@ -8,7 +8,7 @@ import {
     message
 } from 'antd';
 import { connect } from 'react-redux';
-import { hideModal, saveProduct } from '../actionCreators';
+import * as actions from '../../state/Products/actions';
 
 const FormItem = Form.Item;
 
@@ -149,15 +149,4 @@ const mapStateToProps = state => {
     }
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        hideModal(visible, display, product) {
-            dispatch(hideModal(visible, display, product))
-        },
-        saveProduct(visible, productsCategory) {
-            dispatch(saveProduct(visible, productsCategory))
-        }
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Form.create()(ProductModal))
+export default connect(mapStateToProps, actions)(Form.create()(ProductModal))

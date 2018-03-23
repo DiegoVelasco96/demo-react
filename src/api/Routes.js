@@ -1,2 +1,2 @@
 export const getDocuments = "http://localhost/demoReact/ReactApp.nsf/xaServicios.xsp?servicio=listDocuments";
-export const saveDocument = "http://localhost/demoReact/ReactApp.nsf/xaServicios.xsp?servicio=guardarDatos";
+export const saveCategory = "http://localhost/demoReact/ReactApp.nsf/xaServicios.xsp?servicio=guardarCategoria";

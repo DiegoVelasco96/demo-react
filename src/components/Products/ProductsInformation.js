@@ -6,7 +6,7 @@ import {
     message
 } from 'antd';
 import { connect } from 'react-redux';
-import { openModal, deleteProduct } from '../actionCreators';
+import * as actions from '../../state/Products/actions';
 
 class ProductsInformation extends Component {
 
@@ -56,15 +56,4 @@ const mapStateToProps = state => (
     }
 )
 
-const mapDispatchToProps = dispatch => {
-    return {
-        openModal(product, title, display, operation) {
-            dispatch(openModal("", product, title, display, operation));
-        },
-        deleteProduct(newProductsCategory) {
-            dispatch(deleteProduct(newProductsCategory));
-        }
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProductsInformation);
+export default connect(mapStateToProps, actions)(ProductsInformation);

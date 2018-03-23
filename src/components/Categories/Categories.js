@@ -6,9 +6,8 @@ import {
     Form,
     Input
 } from 'antd';
-import store from '../store';
 import { connect } from 'react-redux';
-import { saveDocument, loadCategories } from '../actionCreators';
+import * as actions from '../../state/Categories/actions';
 
 const FormItem = Form.Item;
 const { Column } = Table;
@@ -16,7 +15,7 @@ const { Column } = Table;
 class Categories extends Component {
 
     componentWillMount(){
-        store.dispatch(loadCategories());
+        this.props.loadCategories();
     }
 
     saveCategory = (e) => {
@@ -24,7 +23,7 @@ class Categories extends Component {
         this.props.form.validateFields((err, values) => {
             if (!err) {
                 this.props.form.resetFields();
-                this.props.saveCategory(values, "frCategory");
+                this.props.saveCategory(values);
             }
         });
     }
@@ -65,12 +64,4 @@ const mapStateToProps = state => {
     }
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        saveCategory(category, form) {
-            dispatch(saveDocument(category, form))
-        }
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Form.create()(Categories));
+export default connect(mapStateToProps, actions)(Form.create()(Categories));

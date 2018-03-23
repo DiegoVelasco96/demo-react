@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { 
     getDocuments,
-    saveDocument
+    saveCategory
 } from './Routes';
 
 class Petitions {
@@ -15,7 +15,7 @@ class Petitions {
     saveDocument(datos) {
         return axios({
             method: 'POST',
-            url: saveDocument,
+            url: saveCategory,
             data: datos
         });
     }

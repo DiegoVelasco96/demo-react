@@ -1,0 +1,4 @@
+export const REPLACE_PRODUCTS = "REPLACE_PRODUCTS";
+export const ACTION_MODAL = "ACTION_MODAL";
+export const DELETE_PRODUCT = "DELETE_PRODUCT";
+export const SAVE_PRODUCT = "SAVE_PRODUCT";

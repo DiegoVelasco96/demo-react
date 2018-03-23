@@ -1,0 +1,1 @@
+export const ACTION_MODAL = "ACTION_MODAL";

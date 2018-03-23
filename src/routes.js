@@ -1,5 +1,5 @@
-import Products from './components/Products';
-import Categories from './components/Categories';
+import Products from './components/Products/Products';
+import Categories from './components/Categories/Categories';
 
 const routes = [
     {

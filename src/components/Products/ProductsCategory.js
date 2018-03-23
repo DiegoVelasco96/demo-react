@@ -4,9 +4,8 @@ import {
     Button,
     Icon
 } from 'antd';
-import store from '../store';
 import ProductsInformation from './ProductsInformation';
-import { openModal, loadProducts } from '../actionCreators';
+import * as actions from '../../state/Products/actions';
 import { connect } from 'react-redux';
 
 const TabPane = Tabs.TabPane;
@@ -14,7 +13,7 @@ const TabPane = Tabs.TabPane;
 class ProductsCategory extends Component {
 
     componentWillMount(){
-        store.dispatch(loadProducts());
+        this.props.loadProducts();
     }
 
     openModal = (category) => {
@@ -66,12 +65,4 @@ const mapStateToProps = state => (
     }
 )
 
-const mapDispatchToProps = dispatch => {
-    return {
-        openModal(category, product, title, display, operation) {
-            dispatch(openModal(category, product, title, display, operation));
-        }
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProductsCategory);
+export default connect(mapStateToProps, actions)(ProductsCategory);
