@@ -21,8 +21,7 @@ const products = (state = initialState, action) => {
             return {
                 ...state,
                 productsCategory: action.productsCategory,
-            }
-            break;
+            };
         case ACTION_MODAL:
             return {
                 ...state,
@@ -37,11 +36,9 @@ const products = (state = initialState, action) => {
                 ...state,
                 productsCategory: action.productsCategory,
                 visible: action.visible,
-            }
-            break;
+            };
         default:
             return state;
-            break;
     }
 }
 

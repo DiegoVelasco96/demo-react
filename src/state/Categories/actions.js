@@ -1,13 +1,12 @@
 import Petitions from '../../api/Petitions';
 import {
-  SAVE_CATEGORY,
-  REPLACE_CATEGORIES,
-  LOAD_CATEGORY,
+  SET_CATEGORY,
+  MODIDY_CATEGORY
 } from './const';
 import { message } from 'antd';
 
 const saveCategorySuccess = data => ({
-  type: SAVE_CATEGORY,
+  type: SET_CATEGORY,
   data,
 });
 
@@ -40,7 +39,12 @@ const saveCategory = document => (dispatch, getActualState) => {
   response.then(response => {
     if (response.data.error === "") {
       let categories = [...getActualState().categories.categories];
-      categories.push(response.data.category);
+      const category = categories.find(item => item.id === response.data.category.id);
+      if (category) {
+        category.name = response.data.category.name
+      }else{
+        categories.push(response.data.category);
+      }
       dispatch(saveCategorySuccess(categories));
 
       message.success('The document has been saved successfully');
@@ -50,18 +54,38 @@ const saveCategory = document => (dispatch, getActualState) => {
   })
 }
 
-const loadCategories = () => {
-  return dispatch => {
-    const objCategories = new Petitions();
-    const response = objCategories.listDocuments("categories");
+const loadCategories = () => dispatch => {
+  const objCategories = new Petitions();
+  const response = objCategories.listDocuments("categories");
 
-    response.then(response => {
-      dispatch({
-        type: REPLACE_CATEGORIES,
-        categories: response.data.documents
-      })
-    })
-  }
+  response.then(response => {
+    dispatch(saveCategorySuccess(response.data.documents));
+  })
 }
 
-export { saveCategory, loadCategories };
+const deleteDocument = (id) => (dispatch, getActualState) => {
+  const objCategories = new Petitions();
+  const response = objCategories.deleteDocument(id);
+
+  response.then(response => {
+    const categories = [...getActualState().categories.categories];
+
+    if (response.data.error === "") {
+      const categoryRemove = categories.findIndex(item => item.id === id);
+      if (categoryRemove > 0) {
+        categories.splice(categoryRemove, 1);
+        dispatch(saveCategorySuccess(categories));
+      }
+    }
+  });
+}
+
+const modifyCategory = (category) => dispatch => {
+  dispatch({
+    type: MODIDY_CATEGORY,
+    name: category.name,
+    id: category.id,
+  });
+}
+
+export { saveCategory, loadCategories, deleteDocument, modifyCategory };

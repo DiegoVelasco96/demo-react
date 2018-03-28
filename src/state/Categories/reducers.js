@@ -1,30 +1,31 @@
 import {
-  SAVE_CATEGORY,
-  REPLACE_CATEGORIES,
-  LOAD_CATEGORY,
+  SET_CATEGORY,
+  MODIDY_CATEGORY,
 } from './const';
 
 const initialState = {
-  categories: []
+  categories: [],
+  name: '',
+  id: '',
 }
 
 const categories = (state = initialState, action) => {
   switch (action.type) {
-    case SAVE_CATEGORY:
+    case SET_CATEGORY:
       return {
         ...state,
         categories: action.data,
-      }
-      break;
-    case REPLACE_CATEGORIES:
+        name: '',
+        id: '',
+      };
+    case MODIDY_CATEGORY:
       return {
         ...state,
-        categories: action.data,
+        name: action.name,
+        id: action.id,
       }
-      break;
     default:
       return state;
-      break;
   }
 }
 

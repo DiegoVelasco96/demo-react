@@ -1,14 +1,15 @@
 import axios from 'axios';
-import { 
+import {
     getDocuments,
-    saveCategory
+    saveCategory,
+    deleteDocument
 } from './Routes';
 
 class Petitions {
     listDocuments(document) {
         return axios.get(
             //'products.json',
-            getDocuments+"&document="+document,
+            getDocuments + "&document=" + document,
         );
     }
 
@@ -18,6 +19,12 @@ class Petitions {
             url: saveCategory,
             data: datos
         });
+    }
+
+    deleteDocument(id) {
+        return axios.get(
+            deleteDocument + "&documentId=" + id
+        );
     }
 }
 
